@@ -1,8 +1,6 @@
-# 🎈 Blank app template
+# Joseph: Basics Of Streamlit
 
-A simple Streamlit app template for you to modify!
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+A simple Streamlit app template with all the basics!
 
 ### How to run it on your own machine
 
@@ -17,3 +15,10 @@ A simple Streamlit app template for you to modify!
    ```
    $ streamlit run streamlit_app.py
    ```
+
+#### Content
+
+- Displaying information
+- Displaying Code
+- Displaying Charts
+- Diplaying Data
