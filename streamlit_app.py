@@ -46,3 +46,111 @@ st.dataframe(df.head())
 st.subheader("Iris Dataset Table Sample")
 st.table(df.head())
 
+## Add Charts - Streamlit Charts
+
+st.header("Streamlit Charts")
+# Area chart
+st.subheader("Area Chart: Sepal Length and sepal Width")
+chart_data = df[["sepal_length", "sepal_width"]]
+st.area_chart(chart_data)
+
+# Line chart
+st.subheader("Line: Sepal Length and sepal Width")
+st.line_chart(chart_data)
+
+# Bar chart
+st.subheader("Bar Chart: Sepal Length and sepal Width")
+st.bar_chart(chart_data)
+
+# scatter plot
+st.subheader("Scatter Plot: Sepal Length vs Petal Length")
+chart_data1 = df[["sepal_length", "petal_length"]]
+st.scatter_chart(chart_data1)
+
+## Create a sample Matplotlib plot and A seaborn plot
+st.header("Matplotlib and Seaborn Plot")
+st.text("In this section we will learn how to create columns in streamlit and matplotlib and seaborn plots")
+
+# Create columns
+col1, col2 = st.columns(2)
+
+# Create a sample matplotlib plot in column 1
+with col1:
+    st.subheader("Matplotlib Plot")
+    fig, ax = plt.subplots()
+    ax.plot(df["sepal_length"], df["sepal_width"], "o")
+    ax.set_xlabel("Sepal Length")
+    ax.set_ylabel("Sepal Width")
+    st.pyplot(fig) # Equivalent to plt.show()
+
+with col2:
+    st.subheader("Seaborn Plot")
+    fig, ax = plt.subplots()
+    sns.scatterplot(x="sepal_length", y="sepal_width", data=df, ax=ax)
+    ax.set_xlabel("Sepal Length")
+    ax.set_ylabel("Sepal Width")
+    st.pyplot(fig) # Equivalent to plt.show()
+
+## Show Code Non Executable and Executable Code
+st.header("Code in Streamlit")
+st.subheader("Non Executable Code")
+
+code = """
+# sample plot
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+# Load the iris dataset
+df = sns.load_dataset("iris")
+
+# Create a sample plot
+plt.figure(figsize=(10, 6))
+plt.scatter(df["sepal_length"], df["sepal_width"], c=df["species"].astype("category").cat.codes)
+plt.xlabel("Sepal Length")
+plt.ylabel("Sepal Width")
+plt.title("Iris Dataset: Sepal Length vs Sepal Width")
+plt.show()
+"""
+
+st.code(code, language='python')
+st.subheader("Executable Code")
+
+## Executable plotting Code
+st.subheader("Executable Code with Plotting")
+with st.echo():
+    # Everything inside this block will be both printed to the screen
+    # and executed.
+
+    st.subheader("Seaborn Plot")
+    fig, ax = plt.subplots()
+    sns.scatterplot(x="sepal_length", y="sepal_width", data=df, ax=ax)
+    ax.set_xlabel("Sepal Length")
+    ax.set_ylabel("Sepal Width")
+    st.pyplot(fig) # Equivalent to plt.show()
+
+# And now we're back to _not_ printing to the screen
+st.write('Done!')
+
+# Add a button
+if st.button("Display Bar Chart?"):
+    st.subheader("Bar Chart: Sepal Length and sepal Width")
+    st.bar_chart(chart_data)
+
+# Add checkbox
+if st.checkbox("Display Bar Chart?"):
+    st.subheader("Bar Chart: Sepal Length and sepal Width")
+    st.bar_chart(chart_data)
+
+# Selectbox
+st.subheader("Selectbox")
+st.selectbox("What Car do you drive", ["Subaru", "Swift", "Toyota", "Nissan"])
+
+# Slider
+st.subheader("Slider")
+st.slider("What Is your CC Capacity", 
+            min_value=500, 
+            max_value=5000,
+            value=1000,
+            step=100,
+            format="%d CC")
